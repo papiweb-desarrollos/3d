@@ -5,6 +5,9 @@ import { UploadIcon, CubeIcon, Spinner, CoffeeIcon } from './components/icons';
 import CoffeeCup3D from './components/CoffeeCup3D';
 import AIImageGenerator from './components/AIImageGenerator';
 
+// Importar imagen de Claude como módulo para que Vite la procese correctamente
+// const claudeBackground = '/claude-elegant.png';
+
 const App: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -116,8 +119,19 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans">
-      <div className="w-full max-w-2xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans relative">
+      {/* Imagen de fondo de Claude usando img element */}
+      <img 
+        src="/3d/claude-elegant.png"
+        alt="Claude AI background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ position: 'fixed' }}
+      />
+      
+      {/* Overlay elegante para destacar a Claude de fondo */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-purple-900/60 to-gray-900/80 backdrop-blur-[1px] z-5" style={{ position: 'fixed' }}></div>
+      
+      <div className="w-full max-w-2xl mx-auto relative z-20">
         <header className="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left mb-8 gap-4">
             <div className="w-32 h-32 sm:w-40 sm:h-40 flex-shrink-0">
                 <CoffeeCup3D />
@@ -126,9 +140,20 @@ const App: React.FC = () => {
                 <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-600">
                     Image to GLB Papiweb Converter
                 </h1>
-                <p className="text-gray-400 mt-2 text-lg">
+                <p className="text-gray-200 mt-2 text-lg font-medium">
                     Create a 3D plane from your image, ready for any 3D environment.
                 </p>
+                <p className="text-purple-300 mt-1 text-sm italic">
+                    ✨ Featuring Claude AI background
+                </p>
+                {/* Test de imagen - remover después */}
+                <img 
+                  src="/3d/claude-elegant.png" 
+                  alt="Claude test" 
+                  className="w-16 h-16 rounded-full object-cover border-2 border-purple-400 opacity-50"
+                  onLoad={() => console.log('✅ Imagen cargada correctamente')}
+                  onError={() => console.log('❌ Error cargando imagen')}
+                />
             </div>
         </header>
 
