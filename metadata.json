@@ -1,0 +1,5 @@
+{
+  "name": "Image to GLB Papiweb Converter",
+  "description": "A professional tool to convert JPG and PNG images into a 3D plane in .glb format, with options for double-sided materials and transparency.",
+  "requestFramePermissions": []
+}
