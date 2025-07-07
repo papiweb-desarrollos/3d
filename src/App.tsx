@@ -102,7 +102,7 @@ const App: React.FC = () => {
         setError(null);
         setActiveTab('upload'); // Cambiar a la pestaña de upload para mostrar la imagen
       })
-      .catch(err => {
+      .catch(() => {
         setError('Error al procesar la imagen generada por IA');
       });
   };
@@ -122,14 +122,14 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans relative">
       {/* Imagen de fondo de Claude usando img element */}
       <img 
-        src="/3d/claude-elegant.png"
+        src="/claude-elegant.png"
         alt="Claude AI background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-contain z-0 opacity-30"
         style={{ position: 'fixed' }}
       />
       
       {/* Overlay elegante para destacar a Claude de fondo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-purple-900/60 to-gray-900/80 backdrop-blur-[1px] z-5" style={{ position: 'fixed' }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-purple-900/30 to-gray-900/60 z-5" style={{ position: 'fixed' }}></div>
       
       <div className="w-full max-w-2xl mx-auto relative z-20">
         <header className="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left mb-8 gap-4">
@@ -148,7 +148,7 @@ const App: React.FC = () => {
                 </p>
                 {/* Test de imagen - remover después */}
                 <img 
-                  src="/3d/claude-elegant.png" 
+                  src="/claude-elegant.png" 
                   alt="Claude test" 
                   className="w-16 h-16 rounded-full object-cover border-2 border-purple-400 opacity-50"
                   onLoad={() => console.log('✅ Imagen cargada correctamente')}
