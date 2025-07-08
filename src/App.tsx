@@ -5,9 +5,6 @@ import { UploadIcon, CubeIcon, Spinner, CoffeeIcon } from './components/icons';
 import CoffeeCup3D from './components/CoffeeCup3D';
 import AIImageGenerator from './components/AIImageGenerator';
 
-// Importar imagen de Claude como módulo para que Vite la procese correctamente
-// const claudeBackground = '/claude-elegant.png';
-
 const App: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -15,6 +12,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'upload' | 'ai'>('upload');
+  const [backgroundImageError, setBackgroundImageError] = useState<boolean>(false);
   
   const [options, setOptions] = useState<ExportOptions>({
     doubleSided: true,
@@ -120,16 +118,28 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans relative">
-      {/* Imagen de fondo de Claude usando img element */}
-      <img 
-        src="/claude-elegant.png"
-        alt="Claude AI background"
-        className="absolute inset-0 w-full h-full object-contain z-0 opacity-30"
-        style={{ position: 'fixed' }}
-      />
+      {/* Imagen de fondo de Claude mejorada con mejor estilo y manejo de errores */}
+      {!backgroundImageError && (
+        <img 
+          src="/claude-elegant.png"
+          alt="Claude AI background"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+          style={{ position: 'fixed' }}
+          onLoad={() => setBackgroundImageError(false)}
+          onError={() => setBackgroundImageError(true)}
+        />
+      )}
       
-      {/* Overlay elegante para destacar a Claude de fondo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/60 via-purple-900/30 to-gray-900/60 z-5" style={{ position: 'fixed' }}></div>
+      {/* Fallback gradient para cuando la imagen no carga */}
+      {backgroundImageError && (
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-gray-800 via-purple-900/50 to-gray-800 z-0"
+          style={{ position: 'fixed' }}
+        />
+      )}
+      
+      {/* Overlay optimizado para mejor elegancia y legibilidad */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-purple-900/40 to-gray-900/70 z-5" style={{ position: 'fixed' }}></div>
       
       <div className="w-full max-w-2xl mx-auto relative z-20">
         <header className="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left mb-8 gap-4">
@@ -146,14 +156,6 @@ const App: React.FC = () => {
                 <p className="text-purple-300 mt-1 text-sm italic">
                     ✨ Featuring Claude AI background
                 </p>
-                {/* Test de imagen - remover después */}
-                <img 
-                  src="/claude-elegant.png" 
-                  alt="Claude test" 
-                  className="w-16 h-16 rounded-full object-cover border-2 border-purple-400 opacity-50"
-                  onLoad={() => {/* Imagen cargada correctamente */}}
-                  onError={() => {/* Error cargando imagen */}}
-                />
             </div>
         </header>
 
