@@ -122,7 +122,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans relative">
       {/* Imagen de fondo de Claude usando img element */}
       <img 
-        src="claude-elegant.png"
+        src="claude-background.png"
         alt="Claude AI background"
         className="absolute inset-0 w-full h-full object-contain z-0 opacity-30"
         style={{ position: 'fixed' }}
