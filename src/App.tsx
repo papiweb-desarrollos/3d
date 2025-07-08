@@ -151,8 +151,8 @@ const App: React.FC = () => {
                   src="/claude-elegant.png" 
                   alt="Claude test" 
                   className="w-16 h-16 rounded-full object-cover border-2 border-purple-400 opacity-50"
-                  onLoad={() => console.log('✅ Imagen cargada correctamente')}
-                  onError={() => console.log('❌ Error cargando imagen')}
+                  onLoad={() => {/* Imagen cargada correctamente */}}
+                  onError={() => {/* Error cargando imagen */}}
                 />
             </div>
         </header>
