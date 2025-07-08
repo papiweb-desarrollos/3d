@@ -122,7 +122,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center p-4 font-sans relative">
       {/* Imagen de fondo de Claude usando img element */}
       <img 
-        src="/claude-elegant.png"
+        src="claude-elegant.png"
         alt="Claude AI background"
         className="absolute inset-0 w-full h-full object-contain z-0 opacity-30"
         style={{ position: 'fixed' }}
@@ -148,7 +148,7 @@ const App: React.FC = () => {
                 </p>
                 {/* Test de imagen - remover después */}
                 <img 
-                  src="/claude-elegant.png" 
+                  src="claude-elegant.png" 
                   alt="Claude test" 
                   className="w-16 h-16 rounded-full object-cover border-2 border-purple-400 opacity-50"
                   onLoad={() => {/* Imagen cargada correctamente */}}
